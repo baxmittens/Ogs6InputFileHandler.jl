@@ -1,4 +1,3 @@
-#include(joinpath(".","XMLParser.jl"))
 using XMLParser
 
 mutable struct Ogs6ModelDef
