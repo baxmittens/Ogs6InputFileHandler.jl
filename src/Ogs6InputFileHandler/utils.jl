@@ -97,14 +97,14 @@ function Base.string(md::Ogs6ModelDef)
 	return str
 end
 
-function Base.display(cpt::CollocationPoint)
-	print(cpt)
-end
-
-function Base.print(io::IO, cpt::CollocationPoint)
-	return print(io,Base.string(cpt))
-end
-
-function Base.show(io::IO, cpt::CollocationPoint)
-	return Base.print(io,cpt)
-end
+#function Base.display(cpt::CollocationPoint)
+#	print(cpt)
+#end
+#
+#function Base.print(io::IO, cpt::CollocationPoint)
+#	return print(io,Base.string(cpt))
+#end
+#
+#function Base.show(io::IO, cpt::CollocationPoint)
+#	return Base.print(io,cpt)
+#end
