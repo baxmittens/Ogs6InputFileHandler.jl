@@ -13,6 +13,7 @@ const ogspathspecifier = Dict{String,String}(
 	)
 end
 
+import XMLParser: checkTagName
 function getAllPathesbyTag!(ret::Vector{String},xmlroot::XMLElement,tagname::String,path="./")
 	for con in xmlroot.content
 		if typeof(con)==XMLElement
