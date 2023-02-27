@@ -23,7 +23,7 @@ function getAllPathesbyTag!(ret::Vector{String},xmlroot::XMLElement,tagname::Str
 				els = getChildrenbyTagName(con,pathspec)
 				if !isempty(els)
 					@assert length(els) == 1 && length(els[1].content) == 1 "$els"
-					_path = joinpath(_path,"&$(els[1].content[1])")
+					_path = joinpath(_path,"?$(els[1].content[1])")
 				end
 			end
 			for attribute in con.tag.attributes
@@ -56,11 +56,11 @@ function getElementbyPath(xmlroot::XMLElement, path::String)
 	if isempty(tagstrings)
 		@assert length(els)==1	"empty tagstring"
 		return els[1]
-	elseif tagstrings[1][1] != '@' && tagstrings[1][1] != '&'
+	elseif tagstrings[1][1] != '@' && tagstrings[1][1] != '?'
 		@assert length(els)==1 "$tagstrings"
 		return getElementbyPath(els[1], joinpath(tagstrings...))
-	elseif haskey(ogspathspecifier,tag) && tagstrings[1][1] == '&'
-		specstring = replace(popfirst!(tagstrings),"&"=>"")
+	elseif haskey(ogspathspecifier,tag) && tagstrings[1][1] == '?'
+		specstring = replace(popfirst!(tagstrings),"?"=>"")
 		for el in els
 			children = getChildrenbyTagName(el,ogspathspecifier[tag])
 			@assert length(children) == 1 "$children"
