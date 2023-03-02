@@ -4,6 +4,7 @@ using XMLParser
 
 mutable struct Ogs6ModelDef
 	name::String
+	xmlfile::XMLFile
 	xmlroot::XMLElement
 end
 
