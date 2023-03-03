@@ -27,7 +27,7 @@ function getAllPathesbyTag!(ret::Vector{String},xmlroot::XMLElement,tagname::Str
 				end
 			end
 			for attribute in con.tag.attributes
-				_path = joinpath(_path,"@$(attribute.key)=$(attribute.val)")
+				_path = joinpath(_path,"@$(attribute.key)/$(attribute.val)")
 			end
 			if checkTagName(con,tagname) && typeof(con.content[1]) == String
 				push!(ret,_path)
@@ -74,7 +74,9 @@ function getElementbyPath(xmlroot::XMLElement, path::String)
 		end
 		error("No element found")
 	elseif tagstrings[1][1] == '@'
-		key,val = split(replace(popfirst!(tagstrings),"@"=>""),"=")
+		#key,val = split(replace(popfirst!(tagstrings),"@"=>""),"=")
+		key = replace(popfirst!(tagstrings),"@"=>"")
+		val = popfirst!(tagstrings)
 		for el in els
 			if getAttribute(el,String(key)) == val
 				return getElementbyPath(el, joinpath(tagstrings...))
