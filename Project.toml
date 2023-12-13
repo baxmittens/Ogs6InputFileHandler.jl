@@ -8,5 +8,5 @@ version = "0.0.1"
 XMLParser = "b09a1ce3-015a-45b4-89ae-f27efbd2c76d"
 
 [compat]
-XMLParser = "0.1.4, 0.1.8"
+XMLParser = "0.2"
 julia = "1"
