@@ -110,11 +110,16 @@ function format_ogs_path(path)
 	ret = ""
 	splitstr = split(path,"/")
 	ind = findfirst(x->x=="@id",splitstr)
-	matpar = replace(splitstr[end-1],"?"=>"")
-	if ind != nothing
-		matpar *= " @ id="*splitstr[ind+1]
+	inds = findall(x->contains(x,"?"),splitstr)
+	if inds != nothing
+		matpar = replace(foldl((x,y)->String(x)*"_"*String(y),splitstr[inds]),"?"=>"")
+	else
+		matpar = replace(splitstr[end-1],"?"=>"")
 	end
-	return matpar
+	if ind != nothing
+		matpar *= "_"*splitstr[ind+1]
+	end
+	return replace(matpar,","=>"_")
 end
 
 #function Base.display(cpt::CollocationPoint)
