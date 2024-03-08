@@ -99,6 +99,24 @@ function Base.string(md::Ogs6ModelDef)
 	return str
 end
 
+function displacement_order(ogsmodel::Ogs6ModelDef)
+	process_variables = getElements(ogsmodel.xmlroot,"process_variable")
+	pv_displ = filter(x->getElements(x,"name")[1].content[1]=="displacement", process_variables)
+	@assert length(pv_displ) == 1
+	return parse(Int,getElements(pv_displ[1],"order")[1].content[1])
+end
+
+function format_ogs_path(path)
+	ret = ""
+	splitstr = split(path,"/")
+	ind = findfirst(x->x=="@id",splitstr)
+	matpar = replace(splitstr[end-1],"?"=>"")
+	if ind != nothing
+		matpar *= " @ id="*splitstr[ind+1]
+	end
+	return matpar
+end
+
 #function Base.display(cpt::CollocationPoint)
 #	print(cpt)
 #end
