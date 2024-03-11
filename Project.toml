@@ -2,7 +2,7 @@ name = "Ogs6InputFileHandler"
 uuid = "711b9c6a-ebcb-49ea-83af-4d7ff437a08a"
 license = "MIT"
 authors = ["Maximilian Bittens <maximilian.bittens@bgr.de>"]
-version = "0.0.2"
+version = "0.0.3"
 
 [deps]
 XMLParser = "b09a1ce3-015a-45b4-89ae-f27efbd2c76d"
