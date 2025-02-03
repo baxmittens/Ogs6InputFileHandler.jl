@@ -29,7 +29,7 @@ function getAllPathesbyTag!(ret::Vector{String},xmlroot::XMLElement,tagname::Str
 			for attribute in con.tag.attributes
 				_path = joinpath(_path,"@$(attribute.key)/$(attribute.val)")
 			end
-			if checkTagName(con,tagname) && typeof(con.content[1]) == String
+			if checkTagName(con,tagname) && length(con.content)>0 && typeof(con.content[1]) == String
 				push!(ret,_path)
 			else
 				getAllPathesbyTag!(ret,con,tagname,_path)
