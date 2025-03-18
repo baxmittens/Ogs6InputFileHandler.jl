@@ -111,7 +111,7 @@ function format_ogs_path(path)
 	splitstr = split(path,"/")
 	ind = findfirst(x->x=="@id",splitstr)
 	inds = findall(x->contains(x,"?"),splitstr)
-	if inds != nothing
+	if length(inds) > 0
 		matpar = replace(foldl((x,y)->String(x)*"_"*String(y),splitstr[inds]),"?"=>"")
 	else
 		matpar = replace(splitstr[end-1],"?"=>"")
